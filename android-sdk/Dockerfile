@@ -10,12 +10,14 @@ FROM circleci/android:api-28
 # ====================================================================== #
 # Setup Python 3.7
 # ====================================================================== #
-RUN sudo apt-get update
-RUN sudo apt-get install -y software-properties-common
-RUN sudo add-apt-repository ppa:jonathonf/python-3.7 -y
-RUN sudo apt-get update -y
-RUN sudo apt-get install -y build-essential sqlite3 libsqlite3-dev python3.7 python3.7-dev python3-pip python3.7-venv
-
+RUN sudo apt-get update \
+    && sudo apt-get install -y software-properties-common build-essential sqlite3 libsqlite3-dev zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget \
+    && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz \
+    && tar -xf Python-3.7.3.tar.xz \
+    && cd Python-3.7.3 \
+    && ./configure --enable-optimizations \
+    && make -j 8 \
+    && sudo make altinstall
 
 # ====================================================================== #
 # Update Android SDK
