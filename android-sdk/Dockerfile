@@ -15,8 +15,8 @@ RUN sudo apt-get update \
     && sudo curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz \
     && sudo tar -xf Python-3.7.3.tar.xz \
     && cd Python-3.7.3 \
-    && ./configure --enable-optimizations \
-    && make -j 8 \
+    && sudo ./configure --enable-optimizations \
+    && sudo make -j 8 \
     && sudo make altinstall
 
 # ====================================================================== #
